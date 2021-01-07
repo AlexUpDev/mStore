@@ -1,0 +1,58 @@
+.container {
+    border: 1px rgb(168, 166, 166) solid;
+    border-radius: 5px;
+    background-color: white;
+    margin:5px;
+    padding: 2px;
+    max-width: 120px;
+    display: flex;
+    
+}
+
+.textName {
+    font-weight: strong;
+    font-size: 15px;
+    text-align: center;
+    color: black;
+    width: 106px;
+    height: 35px;
+}
+
+.textBalance {
+    font-weight: strong;
+    font-size: 20px;
+    color: black;
+    width: 106px;
+    height: 35px;
+    display: flex;
+}
+
+.currency {
+    font-weight: 400;
+    font-size: 15px;
+    padding: 2px;
+}
+
+.slds-button {
+    font-size: 48px;
+    width: 53px;
+    padding: 10px;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: rgb(159, 159, 159);
+}
+a:visited {
+    color: green;
+}
+a:hover {
+    color: hotpink;
+}
+a:active {
+    color: blue;
+}

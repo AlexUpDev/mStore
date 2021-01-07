@@ -1,0 +1,47 @@
+<template>
+    <div class="desriptionRus">Обмен валюты</div>
+    <div class="divider"></div>
+    <div class= 'operationName'>Продажа</div>
+    <div class="slds-form-element">
+        <lightning-combobox
+            class ="accountSelect"
+            name="viewMode"
+            value={valueSell}
+            placeholder="Продажа"
+            options={accountsNames}
+            onchange={handleSellAccount}>
+        </lightning-combobox>  
+        <div class='fieldsDivider'></div> 
+        <div class='amountInput'>
+            <div class="slds-form-element__control slds-input-has-fixed-addon">
+                <input type="number" id="text-input-id-1" placeholder="Продажа" aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post" class="slds-input"  onchange={handleSellAmount}/>
+                <span class="slds-form-element__addon" id="fixed-text-addon-post">{currencySell}</span>
+            </div>  
+        </div>   
+    </div>  
+    <div class="divider"></div>
+    <div class= 'operationName'>Покупка</div>
+    <div class="slds-form-element">
+        <lightning-combobox
+            class ="accountSelect"
+            name="viewMode"
+            value={valueBuy}
+            placeholder="Покупка"
+            options={accountsNames}
+            onchange={handleBuyAccount}>
+        </lightning-combobox>  
+        <div class='fieldsDivider'></div> 
+        <div class='amountInput'>
+            <div class="slds-form-element__control slds-input-has-fixed-addon">
+                <input type="number" id="text-input-id-2" placeholder="Покупка" aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post" class="slds-input"  onchange={handleBuyAmount}/>
+                <span class="slds-form-element__addon" id="fixed-text-addon-post2">{currencyBuy}</span>
+            </div>   
+        </div>  
+    </div> 
+    <div class="divider"></div>
+    <div class="operationsDiv"> 
+        <button class="slds-button" onclick={handleBack}> Назад </button>
+        <div class="buttonsDivider"></div>
+        <button class="slds-button" onclick={handleSave}> Завершить </button>    
+    </div>
+</template>

@@ -1,0 +1,69 @@
+body {
+  margin: 0;
+} 
+.wrapper{
+  min-height: 100vh;
+  background: #ccc;
+  display: flex;
+  flex-direction: column;
+}
+.header, .footer{
+  height: 50px;
+  background: rgb(255, 255, 255);
+  color: rgb(46, 46, 46);
+  font-size: 20 px;
+  padding: 10px;
+}
+.content {
+  display: flex;
+  flex: 1;
+  background: #999;
+  color: #000; 
+}
+.columns{
+  display: flex;
+  flex:1;
+}
+.main{
+  flex: 1;
+  order: 2;
+  background: #eee;
+}
+.modeSelect{
+  width: 100px;
+  display: inline block;
+}
+.slds-form-element{
+  display: flex;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  background: white;
+}
+.info{
+  margin-left: 8px;
+  margin-top: 7px;
+  font-size: 24px;
+}
+.slds-button{
+  margin-left: 3px;
+  margin-bottom: 1.2%;
+  font-size: 20px;
+}
+.back-ground{
+  background: rgba(0,0,0,0.3);
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  position: fixed;
+}
+.form-to-popup{
+  width: 380px;
+  height: fit-content;
+  position: absolute;
+  background: white;
+  padding: 10px;
+  border-radius: 0.25rem;
+  left: 6px;
+  top: 15%;
+}

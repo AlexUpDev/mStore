@@ -1,0 +1,13 @@
+<template>
+    <div class="container"> 
+        <template for:each={accounts} for:item="account">
+           <c-m-store-account-tile 
+                key={account.Id} 
+                account={account} 
+                onnewoperation={handleNewOperation}>
+           </c-m-store-account-tile>
+        </template>
+
+        
+    </div>
+</template>

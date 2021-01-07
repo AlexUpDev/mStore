@@ -1,0 +1,31 @@
+.desriptionRus{
+  font-size: large;
+}
+.divider{
+  height: 0.2in;
+}
+.slds-button{
+  font-size: large;
+  padding: 2%;
+}
+.operationsDiv{
+  display: flex;
+}
+.buttonsDivider{
+  width: 60%;
+}
+.slds-form-element{
+  display: flex;
+}
+.accountSelect{
+  width: 52%;
+}
+.fieldsDivider{
+  width: 5%;
+}
+.amountInput{
+  width: 52%;
+}
+.operationName{
+  font-size: larger;
+}
