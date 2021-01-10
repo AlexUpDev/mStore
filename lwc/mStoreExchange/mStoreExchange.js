@@ -1,6 +1,6 @@
 import { LightningElement, api } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import saveOperations from '@salesforce/apex/MStoreSaveOperations.saveOperations';
+import saveOperations from '@salesforce/apex/MStoreController.saveOperations';
 
 export default class MStoreExchange extends LightningElement {
 

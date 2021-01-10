@@ -9,11 +9,21 @@
     <div class="slds-form-element">
         <lightning-combobox
             class ="modeSelect"
-            name="viewMode"
+            name="selectCategory"
             value={value}
             placeholder="Выберите категорию"
             options={categories}
             onchange={handleSelectCategory}>
+        </lightning-combobox>        
+    </div>
+    <div class="slds-form-element" if:true={showSubCategories}>
+        <lightning-combobox
+            class ="modeSelect"
+            name="selectSubCategory"
+            value={defaultSubCategory}
+            placeholder="Выберите подкатегорию"
+            options={subCategories}
+            onchange={handleSelectSubCategory}>
         </lightning-combobox>        
     </div>
     <div class="divider"></div>
