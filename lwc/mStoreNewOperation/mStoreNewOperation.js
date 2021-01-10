@@ -1,6 +1,7 @@
 import { LightningElement, api } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import saveOperations from '@salesforce/apex/MStoreSaveOperations.saveOperations';
+import getCategoriesOptions from '@salesforce/apex/MStoreController.getCategoriesOptions';
+import saveOperations from '@salesforce/apex/MStoreController.saveOperations';
 
 
 export default class MStoreNewOperation extends LightningElement {
@@ -9,6 +10,11 @@ export default class MStoreNewOperation extends LightningElement {
     @api account = '';
     category = '';
     categories = '';
+    subCategory = '';
+    defaultSubCategory = '';
+    subCategories = [];
+    subCategoriesAll = new Map();;
+    showSubCategories = false;
     showDatePicker = false;
     operationDate = '';
     operationAmount = '';
@@ -20,9 +26,8 @@ export default class MStoreNewOperation extends LightningElement {
             { label: 'Продукты', value: 'Продукты' },
             { label: 'Непродуктовые', value: 'Непродуктовые' },
             { label: 'Услуги', value: 'Услуги' },
-            { label: 'Здоровье', value: 'Здоровье' },
-            { label: 'Образование', value: 'Образование' },
             { label: 'Транспорт', value: 'Транспорт' },
+            { label: 'Недвижимость', value: 'Недвижимость' },
             { label: 'Другие', value: 'Другие' }
         ];
         } else if (this.type === 'income') {
@@ -45,11 +50,30 @@ export default class MStoreNewOperation extends LightningElement {
 
     handleSelectCategory(event) {
         this.category = event.detail.value;
+        let subCategoriesArray = [];
+        for (let key of Object.keys(this.subCategoriesAll)) {
+            if (this.category === key) {
+                subCategoriesArray = this.subCategoriesAll[key];
+                break;
+            }
+        }
+        if (subCategoriesArray.length > 0) {
+            this.defaultSubCategory = subCategoriesArray[0];
+            for (let subCategory of subCategoriesArray) {
+                this.subCategories.push({label: subCategory, value: subCategory});
+            }
+            this.showSubCategories = true;
+        } else {
+            this.showSubCategories = false;
+        }
+    }
+
+    handleSelectSubCategory(event) {
+        this.subCategory = event.detail.value;
     }
 
     handleNameChange(event) {
         this.name = event.target.value;
-        console.log('name:' + this.name);
     }
 
     handleAmountChange(event) {
@@ -137,13 +161,20 @@ export default class MStoreNewOperation extends LightningElement {
         } else {
             this.fireMassage('error', 'Выберите категорию');
         }
+        if (this.defaultSubCategory != '') {
+            if (this.subCategory != '') {
+                expense.SubCategory__c = this.subCategory;
+            } else {
+                expense.SubCategory__c = this.defaultSubCategory;
+            }
+        }
         if (this.operationAmount != '') {
             expense.Value__c = this.operationAmount;
         } else {
             this.fireMassage('error', 'Введите сумму');
         }
         if (this.operationDate != '') {
-            expense.Receipt_Date__c = this.operationDate;
+            expense.Expense_Date__c = this.operationDate;
         }
 
         if (expense.Category__c != null && expense.Value__c != null) {
@@ -180,10 +211,20 @@ export default class MStoreNewOperation extends LightningElement {
         if (this.type != undefined) {
             this.calculateDescriptionRus();
             this.calculateCategories();
+            if (this.type === 'expense') {
+                this.getCategoriesOptions();  
+            }
+            
         }  
     }
 
     @api get operation() {
         return this.operation;
+    }
+
+    getCategoriesOptions() {
+        getCategoriesOptions().then(response => {
+            this.subCategoriesAll = response;
+        })
     }
 }

@@ -1,5 +1,5 @@
 import { LightningElement } from 'lwc';
-import getWalletsList from '@salesforce/apex/FinGuardWalletsController.getWalletsList';
+import getAccounts from '@salesforce/apex/MStoreController.getAccounts';
 export default class MStoreMenu extends LightningElement {
 
     //general options
@@ -28,7 +28,7 @@ export default class MStoreMenu extends LightningElement {
     }
 
     getAccounts() {
-        getWalletsList().then(accounts => {
+        getAccounts().then(accounts => {
             this.accounts = accounts;
             this.calculateInfo();
         })
