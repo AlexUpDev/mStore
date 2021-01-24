@@ -32,53 +32,51 @@ export default class MStoreAudit extends LightningElement {
 
     handleAddBYN() {
         let value = this.template.querySelector("input[data-my-id=amountInputByn]").value;
-        if (!value.includes('+') && !value.includes('-')) {
-            if (value.includes(',')) {
-                value = value.replace(',', '.');
-            }
-            let floatValue = parseFloat(value);
-            let roundenValue = Math.round(floatValue*100)/100;
-            let updatedBYN = Math.round((this.factBYN + roundenValue)*100)/100;
-            this.factBYN = updatedBYN;
-
-            this.updateDifference('BYN');
-        } else {
-            this.fireMassage('error', 'Проверьте введенную сумму(BYN)');    
-        }
+        this.addValue(value, 'BYN');
     }
 
     handleAddUSD() {
         let value = this.template.querySelector("input[data-my-id=amountInputUsd]").value;
-        if (!value.includes('+') && !value.includes('-')) {
-            if (value.includes(',')) {
-                value = value.replace(',', '.');
-            }
-            let floatValue = parseFloat(value);
-            let roundenValue = Math.round(floatValue*100)/100;
-            let updatedUSD = Math.round((this.factUSD + roundenValue)*100)/100;
-            this.factUSD = updatedUSD;
-
-            this.updateDifference('USD');
-        } else {
-            this.fireMassage('error', 'Проверьте введенную сумму(USD)');
-        }
+        this.addValue(value, 'USD');
     }
     
     handleAddEUR() {
         let value = this.template.querySelector("input[data-my-id=amountInputEur]").value;
+        this.addValue(value, 'EUR');
+    }
+
+    addValue(value, currency) {
         if (!value.includes('+') && !value.includes('-')) {
             if (value.includes(',')) {
                 value = value.replace(',', '.');
             }
             let floatValue = parseFloat(value);
             let roundenValue = Math.round(floatValue*100)/100;
-            let updatedEUR = Math.round((this.factEUR + roundenValue)*100)/100;
-            this.factEUR = updatedEUR;
+            if (currency === 'BYN') {
+                let updatedBYN = Math.round((this.factBYN + roundenValue)*100)/100;
+                this.factBYN = updatedBYN;
+            } else if (currency === 'USD') {
+                let updatedUSD = Math.round((this.factUSD + roundenValue)*100)/100;
+                this.factUSD = updatedUSD;
+            } else if (currency === 'EUR') {
+                let updatedEUR = Math.round((this.factEUR + roundenValue)*100)/100;
+                this.factEUR = updatedEUR;
+            }
 
-            this.updateDifference('EUR');
+            this.updateDifference(currency);
+
+            if (currency === 'BYN') {
+                this.template.querySelector("input[data-my-id=amountInputByn]").value = "";
+            } else if (currency === 'USD') {
+                this.template.querySelector("input[data-my-id=amountInputUsd]").value = "";
+            } else if (currency === 'EUR') {
+                this.template.querySelector("input[data-my-id=amountInputEur]").value = "";
+            }
         } else {
-            this.fireMassage('error', 'Проверьте введенную сумму(EUR)');
+            this.fireMassage('error', 'Проверьте введенную сумму(' + currency + ')');
         }
+
+
     }
 
     handleBack() {

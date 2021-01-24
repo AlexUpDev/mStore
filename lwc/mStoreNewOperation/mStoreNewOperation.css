@@ -2,7 +2,7 @@
   font-size: large;
 }
 .divider{
-  height: 0.2in;
+  height: 0.4in;
 }
 .slds-button{
   font-size: large;
@@ -10,6 +10,7 @@
 }
 .operationsDiv{
   display: flex;
+  margin-top: 3%;
 }
 .buttonsDivider{
   width: 60%;

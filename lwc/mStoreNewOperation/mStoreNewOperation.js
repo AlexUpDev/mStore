@@ -50,6 +50,7 @@ export default class MStoreNewOperation extends LightningElement {
 
     handleSelectCategory(event) {
         this.category = event.detail.value;
+        this.subCategories = [];
         let subCategoriesArray = [];
         for (let key of Object.keys(this.subCategoriesAll)) {
             if (this.category === key) {

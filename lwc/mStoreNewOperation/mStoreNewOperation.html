@@ -43,12 +43,10 @@
             </div>
         </div>
     </div>
-    <div class="divider" if:true={showDatePicker}></div>
     <div class="slds-form-element__control" if:true={showDatePicker}>
         <div class="slds-form-element"></div>
         <input type="date" id="dateSelected" placeholder="Выберите дату" aria-describedby="error-message-unique-id" class="slds-input" aria-invalid="true" onchange={handleDateChange}/>
     </div>
-    <div class="divider"></div>
     <div class="operationsDiv"> 
         <button class="slds-button" onclick={handleBack}> Назад </button>
         <div class="buttonsDivider"></div>
