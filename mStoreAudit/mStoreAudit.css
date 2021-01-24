@@ -1,0 +1,52 @@
+.desriptionRus{
+  font-size: large;
+}
+.divider{
+  height: 0.2in;
+}
+.slds-button{
+  font-size: large;
+  padding: 2%;
+}
+.operationsDiv{
+  display: flex;
+}
+.buttonsDivider{
+  width: 60%;
+}
+.amountInput{
+  display: flex;
+}
+.accountSelect{
+  width: 52%;
+}
+.fieldsDivider{
+  width: 5%;
+}
+.operationName{
+  font-size: larger;
+}
+.valuesDisplay{
+  align-self: center;
+  display: flex;
+  font-size: large;
+  width: 60%;
+}
+.currencyValuesDivider{
+  width: 5%;
+}
+.factAmount{
+  color: royalblue;
+}
+.initialAmount{
+  color: green;
+}
+.difference{
+  color: red;
+}
+.valuesDivider{
+  font-size: larger;
+}
+.slds-input{
+  width: 35%;
+}
