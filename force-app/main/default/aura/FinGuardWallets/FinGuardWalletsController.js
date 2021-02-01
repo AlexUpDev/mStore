@@ -15,20 +15,20 @@
 
         helper.addNewReceipt(component,event,wallet);
     },
-    viewExpenses: function(component, event, helper){
+    viewExpenses: function(component, helper){
         helper.viewExpenses(component);
     },
-    viewReceipts: function(component, event, helper){
+    viewReceipts: function(component, helper){
         helper.viewReceipts(component);
     },
-    viewProjects: function(component, event, helper){
+    viewProjects: function(component, helper){
         helper.viewProjects(component);
     },
     toRevision: function(component, event, helper){
         let walletsList = component.get("v.walletsList");
         helper.toRevision(component, event, walletsList);
     },
-     viewTemplates: function(component, event, helper){
+     viewTemplates: function(component, helper){
         helper.viewTemplates(component);
     },
 
