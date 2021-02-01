@@ -1,0 +1,59 @@
+<!--
+ - Created by Алексей on 06.12.2019.
+ -->
+
+<aura:component description="FinGuardReceiptCreate"
+                controller="FinGuardReceiptCreateController"
+                implements="flexipage:availableForAllPageTypes">
+    <aura:registerEvent name="ToNewReceiptEvent" type="c:ToNewReceiptEvent" />
+    <aura:attribute name="newReceipt"
+                    type="Reciept__c"
+                    default="{ 'sobjectType': 'Reciept__c','Name': ' ',}" />
+    <aura:attribute name="wallet" type="Wallet__c"/>
+    <div>
+
+        <tr>
+            <td>Выбран кошелёк: {!v.wallet.Name}</td>
+        </tr>
+        <lightning:input type="text"
+                         aura:id="receiptName"
+                         name="Name"
+                         maxlength="20"
+                         label="Название(Доход - если поле пустое)"/>
+        <lightning:input type="text"
+                         aura:id="receiptValue"
+                         name="Value"
+                         label="Значение"
+                         maxlength="20"
+                         required="true"/>
+        <lightning:input aura:id="receiptDate"
+                         type="date"
+                         fieldName="receiptDate"
+                         label="Дата(сегодня - если поле пустое)"/>
+
+        <lightning:select name="Category"
+                          label="Категория"
+                          aura:id="Category">
+            <option value="">Выбрать</option>
+            <option value="Зарплата">Зарплата</option>
+            <option value="Декретные">Декретные</option>
+            <option value="Обмен валюты">Обмен валюты</option>
+            <option value="Подарок">Подарок</option>
+            <option value="Другие">Другие</option>
+            <option value="Коррекция+">Коррекция+</option>
+        </lightning:select>
+
+        <div class="slds-border--bottom">
+            <button class ="slds-button slds-button_inverse"
+                    onclick="{!c.saveReceipt}"
+                    value="Save"
+                    title="Сохранить"
+            >Сохранить</button>
+            <button class ="slds-button slds-button_inverse"
+                    value="Cancel"
+                    title="Отмена"
+                    onclick="{!c.closeReceipt}"
+            >Кошельки</button>
+        </div>
+    </div>
+</aura:component>

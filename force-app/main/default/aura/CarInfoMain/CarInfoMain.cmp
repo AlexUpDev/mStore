@@ -1,0 +1,8 @@
+<aura:component description="CarInfoMain"
+                implements="flexipage:availableForAllPageTypes" >
+
+    <aura:handler name="init"
+                  value="{!this}"
+                  action="{!c.initCarInfoSummary}"/>
+	<div aura:id="root"></div>
+</aura:component>

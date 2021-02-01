@@ -1,0 +1,27 @@
+<template>
+    <div class="wrapper">
+    <header class="header">Boeing Airplanes</header>
+    <div class="slds-form-element">
+        
+        <!--<p>Selected value is: {modelFilter}</p>-->
+        <lightning-combobox
+            name="progress"
+            value={value}
+            placeholder="Select Model"
+            options={options}
+            onchange={handleChangeModel} ></lightning-combobox>
+      </div>
+    <section class="content"> 
+        
+        <div class="columns">
+            
+        <main class="main" >
+            <c-list model-filter={modelFilter} onplaneselected={handlePlaneSelected} ></c-list>
+        </main>
+        <aside class="sidebar-second">
+            <c-detail plane-value={plane}></c-detail>
+        </aside>
+        </div>
+    </section>
+    </div>
+</template>

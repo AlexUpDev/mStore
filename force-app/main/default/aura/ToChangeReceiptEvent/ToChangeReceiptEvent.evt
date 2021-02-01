@@ -1,0 +1,7 @@
+<!--
+ - Created by aleksejuporojskij on 12/20/19.
+ -->
+
+<aura:event type="APPLICATION" description="ToChangeReceiptEvent">
+    <aura:attribute name="checkedReceipt" type="Reciept__c"/>
+</aura:event>

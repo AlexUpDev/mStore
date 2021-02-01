@@ -1,0 +1,25 @@
+<template>
+    <template if:true={plane}>
+        <div class="container">
+            <div>
+               <!-- <img src={planeImage}>-->
+            </div>
+            <div> {plane.FullName__c}  </div>
+           <!-- <div class="price">{plane.fields.StartYear__c.displayValue}</div>
+            <div class="description">{plane.fields.Description__c.value}</div>-->
+            <img class="product-img" src={picture}></img>
+            <div> Seats: {plane.Passengers__c}   </div>
+            <div> Range: {plane.Range__c} km  </div>
+            <div> Max Weight: {plane.MaxWeight__c} kg  </div>
+            <div> Cruise Speed(Max): {plane.MaxCruiseSpeed__c} km/h  </div>
+            <!--<p>
+                <lightning-badge label={plane.Passengers__c}>Seats</lightning-badge>
+                <lightning-badge label={plane.Range__c}>km</lightning-badge>
+            </p>-->
+        
+        </div> 
+    </template>
+    <template if:false={plane}>
+        <div> <img src={boeingLogo}> </div>
+    </template>
+</template>

@@ -1,0 +1,44 @@
+<template>
+    <div class="wrapper">
+        <div if:true={showMenu}>
+            <div class="slds-form-element">
+                <lightning-combobox
+                    class ="modeSelect"
+                    name="viewMode"
+                    value={value}
+                    placeholder="Меню"
+                    options={options}
+                    onchange={handleChangeMode}>
+                </lightning-combobox>        
+                <span class="info">{info}</span>
+                <button class="slds-button" onclick={handleChangeCurrency}>{currency}</button>
+            </div>      
+            <div class="columns">    
+                <main class="main" >
+                    <c-m-store-accounts accounts={accounts} onnewoperation={handleNewOperation}></c-m-store-accounts>
+                </main>
+            </div>
+        </div>
+        <template if:true={showCreateOperation}>
+            <div class="back-ground">
+                <div class="form-to-popup">
+                    <c-m-store-new-operation operation={operation} account={account} onreturntomenu={displayMainMenu}></c-m-store-new-operation>    
+                </div>
+            </div>
+        </template>
+        <template if:true={showExchange}>
+            <div class="back-ground">
+                <div class="form-to-popup">
+                    <c-m-store-exchange accounts-list={accounts} onreturntomenu={displayMainMenu}></c-m-store-exchange>    
+                </div>
+            </div>
+        </template>
+        <template if:true={showAudit}>
+            <div class="back-ground">
+                <div class="form-to-popup">
+                    <c-m-store-audit accounts-list={accounts} onreturntomenu={displayMainMenu}></c-m-store-audit>    
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

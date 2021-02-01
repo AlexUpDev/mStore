@@ -1,0 +1,48 @@
+<aura:component description="CarSummaryFuelLoad"
+                controller="CarSummaryFuelLoadController"
+                implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="newFuelLoad"
+                    type="FuelLoad__c"
+                    default="{ 'sobjectType': 'FuelLoad__c','Name': ' ',}" />
+				<div class="mainDiv">
+        <div class="back-ground">
+            <div class="form-to-popup">
+                    <table>
+                     	<tr>
+                        	<lightning:input type="text" aura:id="inputPriceOfFuel" label="Введите сумму"
+                                                     class="input-field"
+                                                     name="PriceOfFuel"
+                                                     maxlength="4"
+                                                     required="true"
+                                                     messageWhenValueMissing="Введите сумму"/>
+                                
+                            <lightning:input type="text" aura:id="inputAmountOfFuel" label="Введите количество топлива"
+                                                     class="input-field"
+                                                     name="AmountOfFuel"
+                                                     maxlength="4"
+                                                     required="true"
+                                                     messageWhenValueMissing="Введите количество топлива"/>
+                                
+                        	<lightning:input aura:id="fuelLoadDate"
+                         							type="date"
+                         							fieldName="fuelLoadDate"
+                         							label="Дата(сегодня - если поле пустое)"/>
+                        </tr>
+                        
+                    </table>
+                <div class="slds-border--bottom">
+                    <lightning:button onclick="{!c.saveFuelLoad}"
+                                		title="Сохранить"
+                                       	label="Сохранить"
+                                       	variant="inverse"/>
+                    <lightning:button onclick="{!c.closePopup}"
+                                		title="Отмена"
+                                       	label="Отмена"
+                                       	variant="inverse"/>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+</aura:component>

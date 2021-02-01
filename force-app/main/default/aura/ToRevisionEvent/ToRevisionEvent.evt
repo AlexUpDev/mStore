@@ -1,0 +1,7 @@
+<!--
+ - Created by aleksejuporojskij on 1/15/20.
+ -->
+
+<aura:event type="APPLICATION" description="ToRevisionEvent">
+    <aura:attribute name="walletsList" type="List"/>
+</aura:event>

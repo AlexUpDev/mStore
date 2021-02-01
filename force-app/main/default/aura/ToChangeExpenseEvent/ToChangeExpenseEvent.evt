@@ -1,0 +1,7 @@
+<!--
+ - Created by aleksejuporojskij on 12/17/19.
+ -->
+
+<aura:event type="APPLICATION" description="ToChangeExpenseEvent">
+    <aura:attribute name="checkedExpense" type="Expense__c"/>
+</aura:event>

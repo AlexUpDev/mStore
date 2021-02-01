@@ -1,0 +1,76 @@
+<aura:component description="FinGuardWallets"
+                controller="FinGuardWalletsController"
+                implements="flexipage:availableForAllPageTypes">
+    <aura:registerEvent name="BackToWalletsEvent" type="c:BackToWalletsEvent" />
+    <aura:attribute name="walletsList"
+                    type="List"/>
+
+    <aura:handler name="init"
+                  value="{!this}"
+                  action="{!c.init}"/>
+    <div class="mainDiv">
+        <div class="slds-border--bottom">
+            <button class ="slds-button slds-button_inverse"
+                    onclick="{!c.toRevision}"
+                    value="Ревизия"
+                    title="Ревизия"
+            >Ревизия</button>
+            <button class ="slds-button slds-button_inverse"
+                    onclick="{!c.viewProjects}"
+                    value="Проекты"
+                    title="Проекты"
+            >Проекты</button>
+            <button class ="slds-button slds-button_inverse"
+                    onclick="{!c.viewTemplates}"
+                    value="Шаблоны"
+                    title="Шаблоны"
+            >Шаблоны</button>
+        </div>
+        <table>
+            <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Wallet">Кошелёк</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Balance">Баланс</div>
+                </th>
+
+            </tr>
+            </thead>
+            <aura:iteration items="{!v.walletsList}"
+                            var="wallet">
+                <tr>
+                    <td class="slds-tabs--default"> {!wallet.Name}</td>
+
+                    <td>{!wallet.Balance__c} &nbsp;{!wallet.Monetary_Unit__c}</td>
+
+                    <td><lightning:button onclick="{!c.addNewExpense}"
+                                          value="{!wallet}"
+                                          title="Add expense"
+                                          variant="brand"
+                                          label="-"/>
+                    </td>
+                    <td><lightning:button onclick="{!c.addNewReceipt}"
+                                          value="{!wallet}"
+                                          title="Add receipt"
+                                          variant="brand"
+                                          label="+"/>
+                    </td>
+                </tr>
+            </aura:iteration>
+        </table>
+        <div class="slds-border--bottom">
+            <button class ="slds-button slds-button_inverse"
+                    onclick="{!c.viewExpenses}"
+                    value="Расходы"
+                    title="Расходы"
+            >Расходы</button>
+            <button class ="slds-button slds-button_inverse"
+                    onclick="{!c.viewReceipts}"
+                    value="Доходы"
+                    title="Доходы"
+            >Доходы</button>
+        </div>
+    </div>
+</aura:component>

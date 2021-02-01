@@ -1,0 +1,7 @@
+<!--
+ - Created by aleksejuporojskij on 1/3/20.
+ -->
+
+<aura:event type="APPLICATION" description="ToViewProjectDetailsEvent">
+    <aura:attribute name="checkedProject" type="Project__c"/>
+</aura:event>

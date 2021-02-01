@@ -1,0 +1,41 @@
+<aura:component description="CarInfoKm"
+                controller="CarInfoKmController"
+                implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="newKmPerDay"
+                    type="KmPerDay__c"
+                    default="{ 'sobjectType': 'KmPerDay__c','Name': ' ',}" />
+				<div class="mainDiv">
+        <div class="back-ground">
+            <div class="form-to-popup">
+                    <table>
+                     	<tr>
+                        	<lightning:input type="text" aura:id="inputKm" label="Введите пробег за сутки"
+                                                     class="input-field"
+                                                     name="Km"
+                                                     maxlength="5"
+                                                     required="true"
+                                                     messageWhenValueMissing="Введите пробег за сутки"/>
+                                
+                        	<lightning:input aura:id="kmDate"
+                         							type="date"
+                         							fieldName="kmDate"
+                         							label="Дата(сегодня - если поле пустое)"/>
+                        </tr>
+                        
+                    </table>
+                <div class="slds-border--bottom">
+                    <lightning:button onclick="{!c.saveKm}"
+                                		title="Сохранить"
+                                       	label="Сохранить"
+                                       	variant="inverse"/>
+                    <lightning:button onclick="{!c.closePopup}"
+                                		title="Отмена"
+                                       	label="Отмена"
+                                       	variant="inverse"/>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,12 @@
+<template>
+    <div class="container">
+        <a>
+            <div class="textName">{account.Name}</div>
+            <div class="textBalance">{roundedBalance} <span class="currency">{account.Currency__c}</span></div>
+            <div class="slds-button-group" role="group">
+                <button class="slds-button" onclick={newExpense}> - </button>
+                <button class="slds-button" onclick={newIncome}> + </button>
+            </div>
+        </a>
+    </div>
+</template>

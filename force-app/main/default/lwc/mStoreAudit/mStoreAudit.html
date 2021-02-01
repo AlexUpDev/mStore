@@ -1,0 +1,65 @@
+<template>
+    <div class="desriptionRus">Аудит средств</div>
+    <div class="divider"></div>
+    <div class= 'operationName'>Внесено/Расчетное/Разница</div>
+    <div class="divider"></div>
+    <div class="slds-form-element">  
+        <div class='amountInput'>
+            <div class='valuesDisplay'>
+                <div>BYN</div>
+                <div class='currencyValuesDivider'></div>
+                <div class='factAmount'>{factBYN}</div>
+                <div class='valuesDivider'>/</div>
+                <div class='initialAmount'>{initialBYN}</div>
+                <div class='valuesDivider'>/</div>
+                <div class='difference'>{differenceBYN}</div>
+            </div>
+        </div>  
+        <div>
+            <input type="number" data-my-id="amountInputByn" placeholder="Сумма" aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post" class="slds-input"  onchange={handleSellAmount}/>
+            <button class="slds-button" onclick={handleAddBYN}> Внести BYN </button> 
+        </div>
+    </div>  
+    <div class="divider"></div>
+    <div class="slds-form-element">
+        <div class='amountInput'>
+            <div class='valuesDisplay'>
+                <div>USD</div>
+                <div class='currencyValuesDivider'></div>
+                <div class='factAmount'>{factUSD}</div>
+                <div class='valuesDivider'>/</div>
+                <div class='initialAmount'>{initialUSD}</div>
+                <div class='valuesDivider'>/</div>
+                <div class='difference'>{differenceUSD}</div>
+            </div>
+        </div> 
+        <div>
+            <input type="number" data-my-id="amountInputUsd"  placeholder="Сумма" aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post" class="slds-input"  onchange={handleBuyAmount}/>
+            <button class="slds-button" onclick={handleAddUSD}> Внести USD </button> 
+        </div> 
+    </div> 
+    <div class="divider"></div>
+    <div class="slds-form-element">
+        <div class='amountInput'>
+            <div class='valuesDisplay'>
+                <div>EUR</div>
+                <div class='currencyValuesDivider'></div>
+                <div class='factAmount'>{factEUR}</div>
+                <div class='valuesDivider'>/</div>
+                <div class='initialAmount'>{initialEUR}</div>
+                <div class='valuesDivider'>/</div>
+                <div class='difference'>{differenceEUR}</div>
+            </div>
+        </div>  
+        <div>
+            <input type="number" data-my-id="amountInputEur"  placeholder="Сумма" aria-labelledby="fixed-text-label fixed-text-addon-pre fixed-text-addon-post" class="slds-input"  onchange={handleBuyAmount}/>
+            <button class="slds-button" onclick={handleAddEUR}> Внести EUR </button>
+        </div>
+    </div> 
+    <div class="divider"></div>
+    <div class="operationsDiv"> 
+        <button class="slds-button" onclick={handleBack}> Назад </button>
+        <div class="buttonsDivider"></div>
+        <button class="slds-button" onclick={handleSave}> Завершить </button>    
+    </div>   
+</template>

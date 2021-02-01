@@ -1,0 +1,40 @@
+<aura:component description="CarInfoSummary"
+                controller="CarInfoSummaryController"
+                implements="flexipage:availableForAllPageTypes">
+	<aura:attribute name="Car"
+                    type="Car__c"/>
+    <aura:attribute name="KmPerDay"
+                    type="Integer"/>
+    <aura:attribute name="CarExpenses"
+                    type="Decimal"/>
+    <aura:attribute name="ExpensesPerKM"
+                    type="Decimal"/>
+    <aura:handler name="init"
+                  value="{!this}"
+                  action="{!c.init}"/>
+    <div class="mainDiv">
+        <div class="slds-border--bottom">
+            <button class ="slds-button slds-button_inverse"
+                    onclick="{!c.kmPerDay}"
+                    value="+Пробег"
+                    title="+Пробег"
+            >+Пробег</button>
+            <button class ="slds-button slds-button_inverse"
+                    onclick="{!c.fuelLoad}"
+                    value="+Заправка"
+                    title="+Заправка"
+            >+Заправка</button>
+        </div>
+        <table>
+                 <tr>Общий пробег: {!v.Car.TotalKm__c}км</tr>
+            <tr>Средний пробег: {!v.KmPerDay}км/сутки</tr>
+                 <tr>Всего заправлено: {!v.Car.TotalFuel__c}л</tr>
+            <tr>Средний расход: {!v.Car.Consumption__c}л/100км</tr>
+                 <tr>Сумма затрат: {!v.CarExpenses}BYN</tr>
+            <tr>Затраты на км: {!v.ExpensesPerKM}BYN/км</tr>
+        </table> 
+        <img src="{!$Resource.Volvos80}"/>
+        <div aura:id="root"
+                 class="root"/>
+    </div>
+</aura:component>

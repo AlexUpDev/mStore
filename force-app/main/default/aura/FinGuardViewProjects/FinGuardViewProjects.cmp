@@ -1,0 +1,62 @@
+<!--
+ - Created by aleksejuporojskij on 1/3/20.
+ -->
+
+<aura:component description="FinGuardViewProjects"
+                controller="FinGuardViewProjectsController"
+                implements="flexipage:availableForAllPageTypes">
+
+    <aura:registerEvent name="ToViewProjectsEvent" type="c:ToViewProjectsEvent"/>
+    <aura:handler name="init"
+                  value="{!this}"
+                  action="{!c.init}"/>
+    <aura:attribute name="displayedList"
+                    type="Project__c"/>
+    <div class="mainDiv">
+        <div class="slds-border--bottom">
+            <button class ="slds-button slds-button_inverse"
+                    onclick="{!c.backToWallets}"
+                    value="Кошельки"
+                    title="Кошельки"
+            >Кошельки</button>
+        </div>
+        <table>
+            <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Описание">Описание</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Текущий">Текущий</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Прогресс">Прогресс</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Осталось">Осталось</div>
+                </th>
+
+            </tr>
+            </thead>
+            <aura:iteration items="{!v.displayedList}"
+                            var="project">
+                <tr>
+                    <td class="slds-tabs--default"> {!project.Name}</td>
+
+                    <td>{!project.Balance__c}$</td>
+
+                    <td>{!project.Progress__c}%</td>
+
+                    <td>{!project.DaysLeft__c} дней</td>
+                    <td><lightning:button onclick="{!c.viewProjectDetails}"
+                                          value="{!project}"
+                                          title="details"
+                                          variant="brand"
+                                          label=">"/>
+                    </td>
+                </tr>
+            </aura:iteration>
+        </table>
+    </div>
+
+</aura:component>

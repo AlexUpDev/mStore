@@ -1,0 +1,65 @@
+<!--
+ - Created by Алексей on 05.12.2019.
+ -->
+<aura:component description="FinGuardExpenseCreate"
+    controller="FinGuardExpenseCreateController"
+    implements="flexipage:availableForAllPageTypes">
+    <aura:registerEvent name="ToNewExpenseEvent" type="c:ToNewExpenseEvent" />
+    <aura:attribute name="newExpense"
+                        type="Expense__c"
+                        default="{ 'sobjectType': 'Expense__c','Name': 'Expense',}" />
+    <aura:attribute name="wallet" type="Wallet__c"/>
+    <div>
+
+            <tr>
+                <td>Выбран кошелёк: {!v.wallet.Name}</td>
+            </tr>
+            <lightning:input type="text"
+                             aura:id="expenseName"
+                             name="Name"
+                             maxlength="20"
+                             label="Название(Расход - если поле пустое)"/>
+            <lightning:input type="text"
+                             aura:id="expenseValue"
+                             name="Value"
+                             label="Значение"
+                             maxlength="20"
+                             required="true"/>
+            <lightning:input aura:id="expenseDate"
+                             type="date"
+                             fieldName="expenseDate"
+                             label="Дата(сегодня - если поле пустое)"/>
+
+            <lightning:select name="Category"
+                              label="Категория"
+                              aura:id="Category">
+                <option value="">Выбрать</option>
+                <option value="Продукты">Продукты</option>
+                <option value="Непродуктовые">Непродуктовые</option>
+                <option value="Коммунальные">Коммунальные</option>
+                <option value="Связь">Связь</option>
+                <option value="Одежда">Одежда</option>
+                <option value="Здоровье">Здоровье</option>
+                <option value="Развлечения">Развлечения</option>
+                <option value="Образование">Образование</option>
+                <option value="Авто">Авто</option>
+                <option value="Транспорт">Транспорт</option>
+                <option value="Обмен валюты">Обмен валюты</option>
+                <option value="Другие">Другие</option>
+                <option value="Коррекция-">Коррекция-</option>
+            </lightning:select>
+
+            <div class="slds-border--bottom">
+                <button class ="slds-button slds-button_inverse"
+                        onclick="{!c.saveExpense}"
+                        value="Save"
+                        title="Сохранить"
+                >Сохранить</button>
+                <button class ="slds-button slds-button_inverse"
+                        value="Cancel"
+                        title="Отмена"
+                        onclick="{!c.closeExpense}"
+                >Отмена</button>
+            </div>
+    </div>
+</aura:component>

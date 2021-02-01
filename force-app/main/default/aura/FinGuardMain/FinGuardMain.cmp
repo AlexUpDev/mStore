@@ -1,0 +1,41 @@
+<aura:component description="FinGuardMain"
+                implements="flexipage:availableForAllPageTypes" >
+
+    <aura:handler name="init"
+                  value="{!this}"
+                  action="{!c.initFinGuardWallets}"/>
+
+    <aura:handler  event="c:ToNewExpenseEvent"
+                   action="{!c.handleToNewExpenseEvent}"/>
+
+    <aura:handler  event="c:ToNewReceiptEvent"
+                   action="{!c.handleToNewReceiptEvent}"/>
+
+    <aura:handler  event="c:BackToWalletsEvent"
+                   action="{!c.initFinGuardWallets}"/>
+
+    <aura:handler  event="c:ToViewExpensesEvent"
+                   action="{!c.initFinGuardViewExpenses}"/>
+
+    <aura:handler  event="c:ToViewReceiptsEvent"
+                   action="{!c.initFinGuardViewReceipts}"/>
+
+    <aura:handler  event="c:ToChangeExpenseEvent"
+                   action="{!c.handleToChangeExpense}"/>
+
+    <aura:handler  event="c:ToChangeReceiptEvent"
+                   action="{!c.handleToChangeReceipt}"/>
+
+    <aura:handler  event="c:ToViewProjectsEvent"
+                   action="{!c.handleToViewProjects}"/>
+
+    <aura:handler  event="c:ToViewProjectDetailsEvent"
+                   action="{!c.handleToViewProjectDetails}"/>
+
+    <aura:handler  event="c:ToRevisionEvent"
+                   action="{!c.handleToRevisionEvent}"/>
+     <aura:handler  event="c:ToViewTemplatesEvent"
+                   action="{!c.handleToViewTemplatesEvent}"/>
+
+    <div aura:id="root"></div>
+</aura:component>

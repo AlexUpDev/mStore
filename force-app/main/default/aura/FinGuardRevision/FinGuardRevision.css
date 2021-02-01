@@ -1,0 +1,23 @@
+/**
+ * Created by aleksejuporojskij on 1/15/20.
+ */
+
+.THIS.mainDiv {
+    background: white;
+    border-radius: 0.25rem;
+    padding: 10px;
+}
+.THIS .header {
+    font-size: 16px;
+    font-weight: bold;
+}
+.THIS .slds-border--bottom {
+    background-color:#16325c;
+    padding:0.3rem;
+    height:55px;}
+.THIS .slds-tabs--default {
+    padding: 20px 0 20px;
+}
+.THIS .slds-button-brand {
+    margin: 26px 0px 0px 0px;
+}

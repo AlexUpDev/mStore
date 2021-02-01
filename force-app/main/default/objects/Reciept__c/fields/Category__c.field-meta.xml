@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category__c</fullName>
+    <externalId>false</externalId>
+    <label>Category</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Зарплата</fullName>
+                <default>false</default>
+                <label>Зарплата</label>
+            </value>
+            <value>
+                <fullName>Детские</fullName>
+                <default>false</default>
+                <label>Детские</label>
+            </value>
+            <value>
+                <fullName>Обмен валюты</fullName>
+                <default>false</default>
+                <label>Обмен валюты</label>
+            </value>
+            <value>
+                <fullName>Подарок</fullName>
+                <default>false</default>
+                <label>Подарок</label>
+            </value>
+            <value>
+                <fullName>Коррекция+</fullName>
+                <default>false</default>
+                <label>Коррекция+</label>
+            </value>
+            <value>
+                <fullName>Другие</fullName>
+                <default>false</default>
+                <label>Другие</label>
+            </value>
+            <value>
+                <fullName>Ревизия</fullName>
+                <default>false</default>
+                <label>Ревизия</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

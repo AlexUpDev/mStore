@@ -1,0 +1,7 @@
+<!--
+ - Created by Алексей on 05.12.2019.
+ -->
+
+<aura:event type="APPLICATION" description="ToNewExpenseEvent">
+    <aura:attribute name="wallet" type="Wallet__c"/>
+</aura:event>

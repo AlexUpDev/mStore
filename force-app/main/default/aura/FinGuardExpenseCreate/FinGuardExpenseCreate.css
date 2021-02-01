@@ -1,0 +1,17 @@
+/**
+ * Created by Алексей on 06.12.2019.
+ */
+
+.THIS.back-ground{
+    z-index: 3;
+    background: rgba(0,0,0,0.3);
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    position: fixed;
+}
+.THIS .slds-border--bottom {
+       background-color:#16325c;
+       padding:0.5rem
+   }

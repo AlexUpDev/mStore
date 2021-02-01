@@ -1,0 +1,96 @@
+<!--
+ - Created by aleksejuporojskij on 12/20/19.
+ -->
+
+<aura:component description="FinGuardChangeReceipt"
+                controller="FinGuardChangeReceiptController"
+                implements="flexipage:availableForAllPageTypes">
+    <aura:registerEvent name="ToChangeReceiptEvent" type="c:ToChangeReceiptEvent" />
+    <aura:attribute name="checkedReceipt"
+                    type="Reciept__c"
+                    default="{ 'sobjectType': 'Expense__c','Name': 'Receipt',}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div class="mainDiv">
+        <div class="back-ground">
+            <div class="slds-border--bottom">
+                <button class ="slds-button slds-button_inverse"
+                        onclick="{!c.deleteReceipt}"
+                        value="Удалить"
+                        title="Удалить"
+                >Удалить</button>
+            </div>
+            <table>
+                <tr>Название: {!v.checkedReceipt.Name}</tr>
+                <tr>
+                    <lightning:input type="text"
+                                     aura:id="receiptName"
+                                     name="Новое название"
+                                     maxlength="20"
+                                     label="Новое название"/>
+                </tr>
+                <div class="slds-border--bottom"></div>
+                <tr>Сумма: {!v.checkedReceipt.Value__c}</tr>
+                <tr>
+                    <lightning:input type="text"
+                                     aura:id="receiptValue"
+                                     name="Новая сумма"
+                                     label="Новая сумма"
+                                     maxlength="20"
+                                     required="true"/>
+                </tr>
+                <div class="slds-border--bottom"></div>
+                <tr>Дата: {!v.checkedReceipt.Receipt_Date__c}</tr>
+                <tr>
+                    <lightning:input aura:id="receiptDate"
+                                     type="date"
+                                     fieldName="Новая дата"
+                                     label="Новая дата"/>
+                </tr>
+                <div class="slds-border--bottom"></div>
+                <tr>Категория: {!v.checkedReceipt.Category__c}</tr>
+                <tr>
+                    <lightning:select name="Новая категория"
+                                      label="Новая категория"
+                                      aura:id="Category">
+                        <option value="">Выбрать</option>
+                        <option value="Зарплата">Зарплата</option>
+                        <option value="Декретные">Декретные</option>
+                        <option value="Обмен валюты">Обмен валюты</option>
+                        <option value="Подарок">Подарок</option>
+                        <option value="Другие">Другие</option>
+                        <option value="Коррекция+">Коррекция+</option>
+                    </lightning:select>
+                </tr>
+                <div class="slds-border--bottom"></div>
+                <tr>Кошелёк: {!v.checkedReceipt.ValletId__r.Name}</tr>
+                <tr>
+                    <lightning:select name="Новый кошелёк"
+                                      label="Новый кошелёк"
+                                      aura:id="Wallet">
+                        <option value="">Выбрать</option>
+                        <option value="Общий">Общий</option>
+                        <option value="Авто">Авто</option>
+                        <option value="Авто USD">Авто USD</option>
+                        <option value="Общий USD">Общий USD</option>
+                        <option value="Саша">Саша</option>
+                        <option value="Здоровье">Саша USD</option>
+                        <option value="Развлечения">Павел</option>
+                    </lightning:select>
+                </tr>
+            </table>
+            <div class="slds-border--bottom">
+                <button class ="slds-button slds-button_inverse"
+                        onclick="{!c.saveReceipt}"
+                        value="Сохранить"
+                        title="Сохранить"
+                >Сохранить</button>
+                <button class ="slds-button slds-button_inverse"
+                        onclick="{!c.backToReceipts}"
+                        value="Назад"
+                        title="Назад"
+                >Назад</button>
+            </div>
+        </div>
+    </div>
+
+</aura:component>

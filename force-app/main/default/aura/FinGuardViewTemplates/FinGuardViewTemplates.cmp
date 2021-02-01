@@ -1,0 +1,52 @@
+<aura:component description="FinGuardViewTemplates"
+                controller="FinGuardViewTemplatesController"
+                implements="flexipage:availableForAllPageTypes">
+    <aura:registerEvent name="BackToWalletsEvent" type="c:BackToWalletsEvent" />
+    <aura:attribute name="templatesList"
+                    type="List"/>
+
+    <aura:handler name="init"
+                  value="{!this}"
+                  action="{!c.init}"/>
+    <div class="mainDiv">
+        <div class="slds-border--bottom">
+             <button class ="slds-button slds-button_inverse"
+                    onclick="{!c.backToWallets}"
+                    value="Кошельки"
+                    title="Кошельки"
+            >Кошельки</button>
+        </div>
+        <table>
+            <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Name">Название</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Value">Категория</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Value">Сумма</div>
+                </th>
+
+            </tr>
+            </thead>
+            <aura:iteration items="{!v.templatesList}"
+                            var="template">
+                <tr>
+                    <td class="slds-tabs--default"> {!template.Name}</td>
+
+                    <td> {!template.Type__c} </td>
+                    <td> {!template.Value__c} </td>
+
+                    <td><lightning:button onclick="{!c.operation}"
+                                          value="{!template}"
+                                          title="Add operation"
+                                          variant="brand"
+                                          label="+"/>
+                    </td>
+                </tr>
+            </aura:iteration>
+        </table>
+    </div>
+</aura:component>

@@ -1,0 +1,103 @@
+<!--
+ - Created by aleksejuporojskij on 12/17/19.
+ -->
+
+<aura:component description="FinGuardChangeExpense"
+                controller="FinGuardChangeExpenseController"
+                implements="flexipage:availableForAllPageTypes">
+    <aura:registerEvent name="ToChangeExpenseEvent" type="c:ToChangeExpenseEvent" />
+    <aura:attribute name="checkedExpense"
+                    type="Expense__c"
+                    default="{ 'sobjectType': 'Expense__c','Name': 'Expense',}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div class="mainDiv">
+        <div class="back-ground">
+            <div class="slds-border--bottom">
+                <button class ="slds-button slds-button_destructive"
+                        onclick="{!c.deleteExpense}"
+                        value="Удалить"
+                        title="Удалить"
+                >Удалить</button>
+            </div>
+                <table>
+                    <tr>Название: {!v.checkedExpense.Name}</tr>
+                    <tr>
+                            <lightning:input type="text"
+                                             aura:id="expenseName"
+                                             name="Новое название"
+                                             maxlength="20"
+                                             label="Новое название"/>
+                    </tr>
+                    <div class="slds-border--bottom"></div>
+                    <tr>Сумма: {!v.checkedExpense.Value__c}</tr>
+                    <tr>
+                            <lightning:input type="text"
+                                             aura:id="expenseValue"
+                                             name="Новая сумма"
+                                             label="Новая сумма"
+                                             maxlength="20"
+                                             required="true"/>
+                    </tr>
+                    <div class="slds-border--bottom"></div>
+                    <tr>Дата: {!v.checkedExpense.Expense_Date__c}</tr>
+                    <tr>
+                            <lightning:input aura:id="expenseDate"
+                                             type="date"
+                                             fieldName="expenseDate"
+                                             label="Новая дата"/>
+                    </tr>
+                    <div class="slds-border--bottom"></div>
+                    <tr>Категория: {!v.checkedExpense.Category__c}</tr>
+                    <tr>
+                            <lightning:select name="Новая категория"
+                                              label="Новая категория"
+                                              aura:id="Category">
+                                <option value="">Выбрать</option>
+                                <option value="Продукты">Продукты</option>
+                                <option value="Непродуктовые">Непродуктовые</option>
+                                <option value="Коммунальные">Коммунальные</option>
+                                <option value="Связь">Связь</option>
+                                <option value="Крупные(>50$)">Крупные(>50$)</option>
+                                <option value="Здоровье">Здоровье</option>
+                                <option value="Развлечения">Развлечения</option>
+                                <option value="Образование">Образование</option>
+                                <option value="Авто">Авто</option>
+                                <option value="Транспорт">Транспорт</option>
+                                <option value="Обмен валюты">Обмен валюты</option>
+                                <option value="Другие">Другие</option>
+                                <option value="Коррекция-">Коррекция-</option>
+                            </lightning:select>
+                    </tr>
+                    <div class="slds-border--bottom"></div>
+                    <tr>Кошелёк: {!v.checkedExpense.ValletId__r.Name}</tr>
+                    <tr>
+                            <lightning:select name="Новый кошелёк"
+                                              label="Новый кошелёк"
+                                              aura:id="Wallet">
+                                <option value="">Выбрать</option>
+                                <option value="Общий">Общий</option>
+                                <option value="Авто">Авто</option>
+                                <option value="Авто USD">Авто USD</option>
+                                <option value="Общий USD">Общий USD</option>
+                                <option value="Саша">Саша</option>
+                                <option value="Здоровье">Саша USD</option>
+                                <option value="Развлечения">Павел</option>
+                            </lightning:select>
+                    </tr>
+                </table>
+                <div class="slds-border--bottom">
+                    <button class ="slds-button slds-button_inverse"
+                            onclick="{!c.saveExpense}"
+                            value="Сохранить"
+                            title="Сохранить"
+                    >Сохранить</button>
+                    <button class ="slds-button slds-button_destructive"
+                            onclick="{!c.backToExpenses}"
+                            value="Назад"
+                            title="Назад"
+                    >Назад</button>
+                </div>
+        </div>
+    </div>
+
+</aura:component>

@@ -1,0 +1,64 @@
+<!--
+ - Created by aleksejuporojskij on 1/3/20.
+ -->
+
+<aura:component description="FinGuardViewProjectDetails"
+                controller="FinGuardViewProjectDetailsController"
+                implements="flexipage:availableForAllPageTypes">
+    <aura:registerEvent name="ToViewProjectDetailsEvent" type="c:ToViewProjectDetailsEvent" />
+    <aura:attribute name="checkedProject"
+                    type="Project__c"/>
+    <aura:attribute name="newExpense"
+                    type="Expense__c"
+                    default="{ 'sobjectType': 'Expense__c','Name': 'Expense',}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="InputDisable" type="Boolean" default="false" />
+    <div class="mainDiv">
+        <div class="back-ground">
+            <div class="slds-border--bottom">
+                <button class ="slds-button slds-button_inverse"
+                        onclick="{!c.backToProjects}"
+                        value="Назад"
+                        title="Назад"
+                > Проекты </button>
+                <button class ="slds-button slds-button_inverse"
+                        onclick="{!c.backToWallets}"
+                        value="Кошельки"
+                        title="Кошельки"
+                >Кошельки</button>
+            </div>
+            <table>
+                <tr>Название: {!v.checkedProject.Name}</tr>
+
+                <tr>Баланс: {!v.checkedProject.Balance__c}$</tr>
+                <tr>
+                    <td>
+                    <lightning:input type="text"
+                                     aura:id="balanceValue"
+                                     name="Увеличить"
+                                     class="input-field"
+                                     label="Увеличить"
+                                     maxlength="20"/>
+                    </td>
+                    <td>
+                        <button class ="slds-button slds-button_brand"
+                                onclick="{!c.updateProject}"
+                                value="Обновить"
+                                title="Обновить"
+                                disabled="{!v.InputDisable}"
+                        >Обновить</button>
+                    </td>
+                </tr>
+
+                <tr>Прогресс: {!v.checkedProject.Progress__c}%</tr>
+
+                <tr>Целевая сумма: {!v.checkedProject.Target__c}$</tr>
+
+                <tr>Дней осталось: {!v.checkedProject.DaysLeft__c}</tr>
+
+                <tr>Целевая дата: {!v.checkedProject.EndDate__c}</tr>
+
+            </table>
+        </div>
+    </div>
+</aura:component>

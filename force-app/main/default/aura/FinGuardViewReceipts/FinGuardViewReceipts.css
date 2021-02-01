@@ -1,0 +1,20 @@
+/**
+ * Created by Алексей on 10.12.2019.
+ */
+.THIS.mainDiv {
+    background: white;
+    border-radius: 0.25rem;
+    padding: 7px;
+}
+.THIS .header {
+    font-size: 16px;
+    font-weight: bold;
+}
+.THIS .slds-border--bottom {
+    background-color:#16325c;
+    padding:0.5rem
+}
+.THIS .slds-tabs--default {
+    padding: 5px 0 5px;
+    width: 3cm;
+}

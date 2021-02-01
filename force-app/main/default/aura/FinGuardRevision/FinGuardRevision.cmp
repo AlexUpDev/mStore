@@ -1,0 +1,115 @@
+<!--
+ - Created by aleksejuporojskij on 1/14/20.
+ -->
+
+<aura:component description="FinGuardRevision"
+                controller="FinGuardRevisionController"
+                implements="flexipage:availableForAllPageTypes">
+    <aura:registerEvent name="ToRevisionEvent" type="c:ToRevisionEvent" />
+    <aura:attribute name="walletsList"
+                    type="List"/>
+    <aura:attribute name="expensesList"
+                    type="List"/>
+    <aura:attribute name="receiptsList"
+                    type="List"/>
+    <aura:attribute name="totalUSD"
+                    type="Integer"/>
+    <aura:attribute name="totalBYN"
+                    type="Integer"/>
+    <aura:attribute name="totalBYNFact"
+                    type="Integer"
+                    default="0"/>
+    <aura:attribute name="totalUSDFact"
+                    type="Integer"
+                    default="0"/>
+    <aura:attribute name="differenceBYN"
+                    type="Integer"
+                    default="0"/>
+    <aura:attribute name="differenceUSD"
+                    type="Integer"
+                    default="0"/>
+    <aura:attribute name="newExpense"
+                    type="Expense__c"
+                    default="{ 'sobjectType': 'Expense__c','Name': 'Expense',}" />
+    <aura:attribute name="newExpense2"
+                    type="Expense__c"
+                    default="{ 'sobjectType': 'Expense__c','Name': 'Expense',}" />
+    <aura:attribute name="newReceipt"
+                    type="Reciept__c"
+                    default="{ 'sobjectType': 'Reciept__c','Name': 'Receipt',}" />
+    <aura:attribute name="newReceipt2"
+                    type="Reciept__c"
+                    default="{ 'sobjectType': 'Reciept__c','Name': 'Receipt',}" />
+    <aura:handler name="init"
+                  value="{!this}"
+                  action="{!c.doInit}"/>
+    <div class="mainDiv">
+        <div class="slds-border--bottom">
+            <button class ="slds-button slds-button_inverse"
+                    onclick="{!c.backToWallets}"
+                    value="Назад"
+                    title="Назад"
+            >Кошельки</button>
+        </div>
+        <table>
+            <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Wallet">Ревизия</div>
+                </th>
+
+            </tr>
+            </thead>
+                <tr>Всего BYN: {!v.totalBYN} Текущий фактически: {!v.totalBYNFact} Расхождение: {!v.differenceBYN}</tr>
+                <tr>
+                    <td>
+                    <lightning:input type="text"
+                                     aura:id="BYNToAdd"
+                                     name="Фактически BYN"
+                                     label="Фактически BYN"
+                                     maxlength="20"
+                                     required="true"/>
+                    </td>
+                    <td>
+                        <lightning:button onclick="{!c.updateBYNFact}"
+                                          class="slds-button-brand"
+                                          title="Добавить"
+                                          label="Добавить"
+                                          variant="brand"/>
+                         
+                    </td>
+                      
+                </tr>
+             
+            <tr>
+                <td><div class="slds-border--bottom"></div></td>
+               	<td><div class="slds-border--bottom"></div></td>
+            </tr>
+                <tr>Всего USD: {!v.totalUSD} Текущий фактически: {!v.totalUSDFact} Расхождение: {!v.differenceUSD}</tr>
+                <tr>
+                    <td>
+                    <lightning:input type="text"
+                                     aura:id="USDToAdd"
+                                     name="Фактически USD"
+                                     label="Фактически USD"
+                                     maxlength="20"
+                                     required="true"/>
+                    </td>
+                    <td>
+                        <lightning:button onclick="{!c.updateUSDFact}"
+                                          class="slds-button-brand"
+                                          title="Добавить"
+                                          label="Добавить"
+                                          variant="brand"/>
+                    </td>
+                </tr>
+        </table>
+        <div class="slds-border--bottom">
+            <lightning:button onclick="{!c.completeRevision}"
+                                          class="slds-button-menu"
+                                          title="Завершить"
+                                          label="Завершить"
+                                          variant="inverse"/>
+        </div>
+    </div>
+</aura:component>

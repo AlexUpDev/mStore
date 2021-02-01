@@ -1,0 +1,135 @@
+<!--
+ - Created by Алексей on 08.12.2019.
+ -->
+
+<aura:component description="FinGuardViewExpenses"
+    controller="FinGuardViewExpensesController"
+    implements="flexipage:availableForAllPageTypes">
+    <aura:registerEvent name="ToViewExpensesEvent" type="c:ToViewExpensesEvent" />
+    <aura:attribute name="expensesList"
+                    type="Expense__c"/>
+    <aura:attribute name="displayedList"
+                    type="Expense__c"/>
+    <aura:attribute name="pageList"
+                    type="Expense__c"/>
+    <aura:attribute name="pageLength"
+                    type="Integer"
+                    default="7"/>
+    <aura:attribute name="from"
+                    type="Integer"/>
+    <aura:attribute name="to"
+                    type="Integer"/>
+    <aura:attribute name="daysFromStart"
+                    type="Integer"/>
+
+    <aura:handler name="init"
+                  value="{!this}"
+                  action="{!c.init}"/>
+
+    <div class="mainDiv">
+        <div class="slds-border--bottom">
+            <button class ="slds-button slds-button_inverse"
+                    onclick="{!c.backToWallets}"
+                    value="Кошельки"
+                    title="Кошельки"
+            >Кошельки</button>
+        </div>
+        <lightning:layout>
+            <lightning:layoutItem padding="around-small" size="4">
+        <lightning:select name="Wallet"
+                          label="Кошелёк"
+                          aura:id="Wallet"
+                          onchange="{!c.filterByWallet}">
+            <option value="Все">Все</option>
+            <option value="Общий">Общий</option>
+            <option value="Общий USD">Общий USD</option>
+            <option value="Авто">Авто</option>
+            <option value="Авто USD">Авто USD</option>
+            <option value="Саша">Саша</option>
+            <option value="Саша USD">Саша USD</option>
+            <option value="Павел">Павел</option>
+        </lightning:select>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-small" size="4">
+            <lightning:select name="Category"
+                              label="Категория"
+                              aura:id="Category"
+                              onchange="{!c.filterByCategory}">
+
+                <option value="Все">Все</option>
+                <option value="Продукты">Продукты</option>
+                <option value="Непродуктовые">Непродуктовые</option>
+                <option value="Коммунальные">Коммунальные</option>
+                <option value="Связь">Связь</option>
+                <option value="Одежда">Одежда</option>
+                <option value="Здоровье">Здоровье</option>
+                <option value="Развлечения">Развлечения</option>
+                <option value="Образование">Образование</option>
+                <option value="Авто">Авто</option>
+                <option value="Транспорт">Транспорт</option>
+                <option value="Обмен валюты">Обмен валюты</option>
+                <option value="Другие">Другие</option>
+                <option value="Коррекция-">Коррекция-</option>
+            </lightning:select>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-small" size="4">
+            <lightning:input aura:id="Date"
+                             type="date"
+                             fieldName="expenseDate"
+                             label="Дата"
+                             onchange="{!c.filterByDate}"/>
+            </lightning:layoutItem>
+        </lightning:layout>
+        <table>
+            <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Расход">Расход</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Сумма">Сумма</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Категория">Категория</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Balance">Дата</div>
+                </th>
+
+            </tr>
+            </thead>
+            <aura:iteration items="{!v.pageList}"
+                            var="expense">
+                <tr>
+                    <td class="slds-tabs--default"> {!expense.Name}</td>
+
+                    <td>{!expense.Value__c}</td>
+
+                    <td>{!expense.Category__c}</td>
+
+                    <td>{!expense.Expense_Date__c}</td>
+                    <td><lightning:button onclick="{!c.changeExpense}"
+                                          value="{!expense}"
+                                          title="Change expense"
+                                          variant="inverse"
+                                          label=">"/>
+                    </td>
+                </tr>
+            </aura:iteration>
+        </table>
+        <div class="slds-border--bottom">
+            <button class ="slds-button slds-button_inverse"
+                    disabled="{!v.from == 0}"
+                    onclick="{!c.toPreviousPage}"
+                    value="Предыдущая"
+                    title="Предыдущая"
+            >Назад</button>
+            <button class ="slds-button slds-button_inverse"
+                    disabled="{!v.to >= (v.displayedList.length-1)}"
+                    onclick="{!c.toNextPage}"
+                    value="Следующая"
+                    title="Следующая"
+            >Вперёд</button>
+        </div>
+    </div>
+</aura:component>

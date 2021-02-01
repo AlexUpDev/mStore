@@ -1,0 +1,18 @@
+.THIS.mainDiv {
+    background: white;
+    border-radius: 0.25rem;
+    padding: 20px;
+    font-size: 14px;
+}
+.THIS .header {
+    font-size: 16px;
+    font-weight: bold;
+}
+.THIS .slds-border--bottom {
+    background-color:#16325c;
+    padding:0.5rem
+}
+.THIS .slds-tabs--default {
+    padding: 20px 0 20px;
+    width: 3cm;
+}

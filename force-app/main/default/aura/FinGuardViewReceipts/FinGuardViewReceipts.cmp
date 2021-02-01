@@ -1,0 +1,126 @@
+<!--
+ - Created by Алексей on 10.12.2019.
+ -->
+
+<aura:component description="FinGuardViewReceipts"
+    controller="FinGuardViewReceiptsController"
+    implements="flexipage:availableForAllPageTypes">
+    <aura:registerEvent name="ToViewReceiptsEvent" type="c:ToViewReceiptsEvent" />
+    <aura:attribute name="receiptsList"
+                    type="Reciept__c"/>
+    <aura:attribute name="displayedList"
+                    type="Reciept__c"/>
+    <aura:attribute name="pageList"
+                    type="Reciept__c"/>
+    <aura:attribute name="pageLength"
+                    type="Integer"
+                    default="7"/>
+    <aura:attribute name="from"
+                    type="Integer"/>
+    <aura:attribute name="to"
+                    type="Integer"/>
+
+    <aura:handler name="init"
+                  value="{!this}"
+                  action="{!c.init}"/>
+
+    <div class="mainDiv">
+        <div class="slds-border--bottom">
+            <button class ="slds-button slds-button_inverse"
+                    onclick="{!c.backToWallets}"
+                    value="Кошельки"
+                    title="Кошельки"
+            >Кошельки</button>
+        </div>
+        <lightning:layout>
+            <lightning:layoutItem padding="around-small" size="4">
+                <lightning:select name="Wallet"
+                                  label="Кошелёк"
+                                  aura:id="Wallet"
+                                  onchange="{!c.filterByWallet}">
+                    <option value="Все">Все</option>
+                    <option value="Общий">Общий</option>
+                    <option value="Общий USD">Общий USD</option>
+                    <option value="Авто">Авто</option>
+                    <option value="Авто USD">Авто USD</option>
+                    <option value="Саша">Саша</option>
+                    <option value="Саша USD">Саша USD</option>
+                    <option value="Павел">Павел</option>
+                </lightning:select>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-small" size="4">
+                <lightning:select name="Category"
+                                  label="Категория"
+                                  aura:id="Category"
+                                  onchange="{!c.filterByCategory}">
+
+                    <option value="Все">Все</option>
+                    <option value="Зарплата">Зарплата</option>
+                    <option value="Декретные">Декретные</option>
+                    <option value="Обмен валюты">Обмен валюты</option>
+                    <option value="Подарок">Подарок</option>
+                    <option value="Другие">Другие</option>
+                    <option value="Коррекция+">Коррекция+</option>
+                </lightning:select>
+            </lightning:layoutItem>
+            <lightning:layoutItem padding="around-small" size="4">
+                <lightning:input aura:id="Date"
+                                 type="date"
+                                 fieldName="receiptDate"
+                                 label="Дата"
+                                 onchange="{!c.filterByDate}"/>
+            </lightning:layoutItem>
+        </lightning:layout>
+        <table>
+            <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Доход">Доход</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Сумма">Сумма</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Категория">Категория</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Balance">Дата</div>
+                </th>
+
+            </tr>
+            </thead>
+            <aura:iteration items="{!v.pageList}"
+                            var="receipt">
+                <tr>
+                    <td class="slds-tabs--default"> {!receipt.Name}</td>
+
+                    <td>{!receipt.Value__c}</td>
+
+                    <td>{!receipt.Category__c}</td>
+
+                    <td>{!receipt.Receipt_Date__c}</td>
+                    <td><lightning:button onclick="{!c.changeReceipt}"
+                                          value="{!receipt}"
+                                          title="Change receipt"
+                                          variant="inverse"
+                                          label=">"/>
+                    </td>
+                </tr>
+            </aura:iteration>
+        </table>
+        <div class="slds-border--bottom">
+            <button class ="slds-button slds-button_inverse"
+                    disabled="{!v.from == 0}"
+                    onclick="{!c.toPreviousPage}"
+                    value="Предыдущая"
+                    title="Предыдущая"
+            >Назад</button>
+            <button class ="slds-button slds-button_inverse"
+                    disabled="{!v.to >= (v.receiptsList.length-1)}"
+                    onclick="{!c.toNextPage}"
+                    value="Следующая"
+                    title="Следующая"
+            >Вперёд</button>
+        </div>
+    </div>
+</aura:component>
